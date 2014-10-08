@@ -1,0 +1,28 @@
+Note: The implementation I've written essentially assumes that all the integers are distinct
+      and positive.  If we have duplicate integers, I would store duplicate keys in the
+      dictionary as a tuple, and then write a custom print method that takes this into
+      account.
+
+1. For the cache implementation, I have just serialized my Python dictionaries as JSON
+   files for readability.  JSON keys are strings, so I made a cosmetic change to turn
+   them back into integers when printing.  More generally, if I did not use the built-in
+   JSON encoder and decoder, a generic implementation would write the following to a
+   csv file:
+       1) Put a string of the (sorted) 
+
+2. Once loaded from the JSON file, python dicts have constant time (amortized) lookup,
+   so the speed issues come from serializing and deserializing the JSON file at the
+   beginning and end of factor_cache evaluation.  JSON parsing is fairly slow in this
+   regard, but is human readable and easy to implement.  For very large caches, I
+   would try to make a SQL database, which I might implement in the following way:
+   	 1) One table is just two identical columns that include ALL the numbers seen 
+	    in ALL arrays so far
+	 2) Another table whose name is related to the input array, which has two columns
+	    that map the left side of the previous table to the right side ie. [20, 5],
+	    [20, 10], etc.
+
+   
+
+3. Reversed functionality does not change the caching algorithm, as the initial key is
+   just a stringified and tuple-fied version of the input array in the JSON implementation.
+   For the generic csv 
