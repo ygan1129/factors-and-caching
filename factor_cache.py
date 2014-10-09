@@ -27,11 +27,7 @@ def factor_cache(int_array_input):
 
     if len(int_array_input) == 0:
         return None
-    '''
-    this is the naive implementation that takes a sorted int_array
-    from memoize (O(n log n)) time, and then takes on average 1/4 n^2
-    time to find all the factors because it might recalculate them
-    '''
+
     out_dict = {key : [] for key in int_array_input}
 
     for x in range(0, len(int_array_input)):
